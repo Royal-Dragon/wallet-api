@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import {sql} from './config/db.js'; // Adjust the path as necessary
-import rateLimiterMiddleware from './middleware/ratelimiter.js';
+import rateLimiterMiddleware from './middleware/rateLimiter.js';
 
 dotenv.config();  
 
