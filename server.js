@@ -3,10 +3,11 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import {sql} from './config/db.js'; // Adjust the path as necessary
 import rateLimiterMiddleware from './middleware/rateLimiter.js';
-
+import job from './config/cron.js';
 dotenv.config();  
 
 const app = express();
+job.start(); // Start the cron job
 
 app.use(rateLimiterMiddleware); // Apply rate limiting middleware
 app.use(express.json());
@@ -35,6 +36,11 @@ async function initDB(){
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
+}
+);
+
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'OK' });
 }
 );
 
